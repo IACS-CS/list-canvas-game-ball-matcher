@@ -22,6 +22,7 @@ let gi = new GameInterface();
 /* Variables: Top-Level variables defined here are used to hold game state */
 let ballsXs = [];
 let ballsYs = [];
+let clickCount = 0;
 // Draw 20 balls at random positions 
 // This code was helped written by Github Copilot
 for (let i = 0; i < 20; i++) {
@@ -45,9 +46,22 @@ that will be called in sequence each frame. It's a good idea to do
 one function per each object you are putting on screen, and you
 may then want to break your drawing function down into sub-functions
 to make it easier to read/follow */
-function checkForThing ({x, y balls}) {
-  // check if its within radius of ball
-  
+
+// If the player clicks on a ball, change the color of that ball to blue
+function checkForClickOnThings ({x, y}) {
+  // This code was helped written by Github Copilot
+  for (let i = 0; i < 20; i++) {
+    let ballX = ballsXs[i];
+    let ballY = ballsYs[i];
+    let ballColors = ballsColors[i];
+    if (Math.sqrt((x - ballX) ** 2 + (y - ballY) ** 2) < 10) {
+      ballsColors[i] = "blue";
+      clickCount++;
+      if (clickCount == 20) {
+        alert("You won! It took you " + gi.getElapsedSeconds() + " seconds.");
+      }
+    }
+  }
 }
 
 
@@ -76,6 +90,7 @@ gi.addHandler(
     // Your click handling code here...
   }
 )
+gi.addClickHandler(checkForClickOnThings);
 
 
 /* Run the game */
