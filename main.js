@@ -50,16 +50,16 @@ to make it easier to read/follow */
 // If the player clicks on a ball, change the color of that ball to blue
 function checkForClickOnThings ({x, y}) {
   // This code was helped written by Github Copilot
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < ballsXs.length; i++) {
     let ballX = ballsXs[i];
     let ballY = ballsYs[i];
-    let ballColors = ballsColors[i];
-    if (Math.sqrt((x - ballX) ** 2 + (y - ballY) ** 2) < 10) {
+    let distance = Math.sqrt((x - ballX) ** 2 + (y - ballY) ** 2);
+    // If the distance between the click and the ball is less than 15 pixels, change the color of the ball to blue
+    if (distance < 15) { // Make radius bigger
       ballsColors[i] = "blue";
       clickCount++;
-      if (clickCount == 20) {
-        alert("You won! It took you " + gi.getElapsedSeconds() + " seconds.");
-      }
+    // If all the balls are blue, stop the game and show the time taken
+      
     }
   }
 }
@@ -75,6 +75,14 @@ gi.addDrawing(
       ctx.arc(ballsXs[i], ballsYs[i], 10, 0, Math.PI * 2);
       ctx.fill();
     }
+    // If all the balls are blue, stop the game and show the time taken
+    // This code was helped written by Github Copilot
+     if (ballsColors.every(color => color === "blue")) {
+        gi.stop();
+        ctx.fillStyle = "black";
+        ctx.font = "30px Arial";
+        ctx.fillText("Congratulations! You won in " +stepTime + " Seconds!", 100, 250);
+      }
     // Your drawing code here...
   }
 )
