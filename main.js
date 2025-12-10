@@ -5,7 +5,8 @@
 and the player has to click to chanage all the colors to blue. When the
 player makes all the balls blue, the screen tells them how long it took.] */
 /* Citations: [List any resources, libraries, tutorials, etc you used here] 
-/* Note: If you use significant AI help you should cite that here as well */
+/* Note: Used AI to make the colors of the balls distribute evenly, make
+the ball blue when player clicks the ball, and for the game over screen.  */
 /* including summaries of prompts and/or interactions you had with the AI */
 /* In addition, of course, any AI-generated code should be clearly maked */
 /* in comments throughout the code, though of course when using e.g. CoPilot */
