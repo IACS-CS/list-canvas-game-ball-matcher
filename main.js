@@ -22,12 +22,16 @@ let gi = new GameInterface();
 /* Variables: Top-Level variables defined here are used to hold game state */
 let ballsXs = [];
 let ballsYs = [];
+let velocityXs = [];
+let velocityYs = [];
 let clickCount = 0;
 // Draw 20 balls at random positions
 // This code was helped written by Github Copilot
 for (let i = 0; i < 20; i++) {
   ballsXs.push(Math.random() * 480 + 100);
   ballsYs.push(Math.random() * 480 + 100);
+  velocityXs.push(Math.random() * 2 - 1);
+  velocityYs.push(Math.random() * 2 - 1);
 }
 let ballsColors = [];
 // This code was helped written by Github Copilot
@@ -70,6 +74,16 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
     ctx.beginPath();
     ctx.arc(ballsXs[i], ballsYs[i], 10, 0, Math.PI * 2);
     ctx.fill();
+    // Move the balls
+    ballsXs[i] += velocityXs[i];
+    ballsYs[i] += velocityYs[i];
+    // Bounce the balls off the walls
+    if (ballsXs[i] < 0 || ballsXs[i] > width) {
+      velocityXs[i] *= -1;
+    }
+    if (ballsYs[i] < 0 || ballsYs[i] > height) {
+      velocityYs[i] *= -1;
+    }
   }
   
   
