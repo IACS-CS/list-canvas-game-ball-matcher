@@ -985,7 +985,7 @@ let gi = new T();
 /* Variables: Top-Level variables defined here are used to hold game state */
 let ballsXs = [];
 let ballsYs = [];
-// Draw 20 balls at random positions 
+// Draw 20 balls at random positions
 // This code was helped written by Github Copilot
 for (let i = 0; i < 20; i++) {
   ballsXs.push(Math.random() * 480 + 100);
@@ -999,8 +999,6 @@ for (let i = 0; i < 20; i++) {
   ballsColors.push(colorPalette[i % 4]);
 }
 
-
-
 /* Drawing Functions */
 
 /* Example drawing function: you can add multiple drawing functions
@@ -1010,58 +1008,59 @@ may then want to break your drawing function down into sub-functions
 to make it easier to read/follow */
 
 // If the player clicks on a ball, change the color of that ball to blue
-function checkForClickOnThings ({x, y}) {
+function checkForClickOnThings({ x, y }) {
   // This code was helped written by Github Copilot
   for (let i = 0; i < ballsXs.length; i++) {
     let ballX = ballsXs[i];
     let ballY = ballsYs[i];
     let distance = Math.sqrt((x - ballX) ** 2 + (y - ballY) ** 2);
     // If the distance between the click and the ball is less than 15 pixels, change the color of the ball to blue
-    if (distance < 15) { // Make radius bigger
+    if (distance < 15) {
+      // Make radius bigger
       ballsColors[i] = "blue";
-    // If all the balls are blue, stop the game and show the time taken
-      
+      break; // Stop checking after first hit
     }
   }
 }
 
-
-gi.addDrawing(
-  function ({ ctx, width, height, elapsed, stepTime }) {
-    // Draw the balls with 4 different colors
-    // This code was helped written by Github Copilot
-    for (let i = 0; i < 20; i++) {
-      ctx.fillStyle = ballsColors[i];
-      ctx.beginPath();
-      ctx.arc(ballsXs[i], ballsYs[i], 10, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    // If all the balls are blue, stop the game and show the time taken
-    // This code was helped written by Github Copilot
-     if (ballsColors.every(color => color === "blue")) {
-        gi.stop();
-        ctx.fillStyle = "black";
-        ctx.font = "30px Arial";
-        ctx.fillText("Congratulations! You won in " +stepTime + " Seconds!", 100, 250);
-      }
-    // Your drawing code here...
+gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
+  // Draw the balls with 4 different colors
+  // This code was helped written by Github Copilot
+  for (let i = 0; i < 20; i++) {
+    ctx.fillStyle = ballsColors[i];
+    ctx.beginPath();
+    ctx.arc(ballsXs[i], ballsYs[i], 10, 0, Math.PI * 2);
+    ctx.fill();
   }
-);
+  
+  
+  // If all the balls are blue, stop the game and show the time taken
+  // This code was helped written by Github Copilot
+  if (ballsColors.every((color) => color === "blue")) {
+    gi.stop();
+    ctx.fillStyle = "white";
+    ctx.font = "30px Arial";
+    // Convert elapsed (milliseconds) to seconds
+    let secondsElapsed = (elapsed / 1000).toFixed(2);
+    ctx.fillText(
+      "Congratulations! You won in " + secondsElapsed + " Seconds!",
+      100,
+      250
+    );
+  }
+  // Your drawing code here...
+});
 
 /* Input Handlers */
 
 /* Example: Mouse click handler (you can change to handle 
 any type of event -- keydown, mousemove, etc) */
 
-gi.addHandler(
-  "click",
-  function ({ event, x, y }) {
-    // Your click handling code here...
-  }
-);
+gi.addHandler("click", function ({ event, x, y }) {
+  checkForClickOnThings({ x, y });
+});
 gi.addClickHandler(checkForClickOnThings);
-
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-4b5d32d3.js.map
+//# sourceMappingURL=index-0bd91168.js.map
