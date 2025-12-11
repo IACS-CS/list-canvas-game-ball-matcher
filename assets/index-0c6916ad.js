@@ -987,13 +987,14 @@ let ballsXs = [];
 let ballsYs = [];
 let velocityXs = [];
 let velocityYs = [];
+let clickCount = 0;
 // Draw 20 balls at random positions
 // This code was helped written by Github Copilot
 for (let i = 0; i < 20; i++) {
   ballsXs.push(Math.random() * 480 + 100);
   ballsYs.push(Math.random() * 480 + 100);
-  velocityXs.push(Math.random() * 2 - 1);
-  velocityYs.push(Math.random() * 2 - 1);
+  velocityXs.push(Math.random() * 4 - 1);
+  velocityYs.push(Math.random() * 4 - 1);
 }
 let ballsColors = [];
 // This code was helped written by Github Copilot
@@ -1012,6 +1013,8 @@ may then want to break your drawing function down into sub-functions
 to make it easier to read/follow */
 
 // If the player clicks on a ball, change the color of that ball to blue
+// Show instructions on top of the screen
+
 function checkForClickOnThings({ x, y }) {
   // This code was helped written by Github Copilot
   for (let i = 0; i < ballsXs.length; i++) {
@@ -1022,12 +1025,22 @@ function checkForClickOnThings({ x, y }) {
     if (distance < 15) {
       // Make radius bigger
       ballsColors[i] = "blue";
+      clickCount++;
       break; // Stop checking after first hit
     }
   }
 }
 
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
+  // Show instructions on top of the screen
+  // This code was helped written by Github Copilot
+  ctx.fillStyle = "white";
+  ctx.font = "20px Arial";
+  ctx.fillText("Click on the balls to change their color to blue!", 300, 100);
+  // When the player clicks on a ball, remove the text
+  if (clickCount > 0) {
+    ctx.clearRect(0, 0, width, height);
+  }
   // Draw the balls with 4 different colors
   // This code was helped written by Github Copilot
   for (let i = 0; i < 20; i++) {
@@ -1077,4 +1090,4 @@ gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-69c81557.js.map
+//# sourceMappingURL=index-0c6916ad.js.map
