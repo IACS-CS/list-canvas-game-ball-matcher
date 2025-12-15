@@ -123,26 +123,26 @@ any type of event -- keydown, mousemove, etc) */
 // This code was helped written by Github Copilot
 gi.addHandler("keydown", function ({ event }) {
   if (event.key === "r" || event.key === "R") {
-    location.reload();
+    // Only restart if all the balls are blue
+    if (ballsColors.every((color) => color === "blue")) {
+      // Reset game state
+      ballsXs = [];
+      ballsYs = [];
+      ballsColors = [];
+      velocityXs = [];
+      velocityYs = [];
+      clickCount = 0;
+      for (let i = 0; i < 20; i++) {
+        ballsXs.push(Math.random() * 480 + 100);
+        ballsYs.push(Math.random() * 480 + 100);
+        velocityXs.push(Math.random() * 4 - 1);
+        velocityYs.push(Math.random() * 4 - 1);
+        let colorPalette = ["red", "green", "blue", "yellow"];
+        ballsColors.push(colorPalette[i % 4]);
+      }
+    gi.run()
   }
-  // Reset game state
-  ballsXs = [];
-  ballsYs = [];
-  velocityXs = [];
-  velocityYs = [];
-  clickCount = 0;
-  for (let i = 0; i < 20; i++) {
-    ballsXs.push(Math.random() * 480 + 100);
-    ballsYs.push(Math.random() * 480 + 100);
-    velocityXs.push(Math.random() * 4 - 1);
-    velocityYs.push(Math.random() * 4 - 1);
-  }
-  ballsColors = [];
-  for (let i = 0; i < 20; i++) {
-    let colorPalette = ["red", "green", "blue", "yellow"];
-    ballsColors.push(colorPalette[i % 4]);
-  }
-  gi.run();
+}
 });
 
 
