@@ -988,6 +988,7 @@ let ballsYs = [];
 let velocityXs = [];
 let velocityYs = [];
 let clickCount = 0;
+let gameTimer = 0;
 // Draw 20 balls at random positions
 // This code was helped written by Github Copilot
 for (let i = 0; i < 20; i++) {
@@ -1032,6 +1033,9 @@ function checkForClickOnThings({ x, y }) {
 }
 
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
+  // Update gametimer
+  gameTimer += stepTime;
+
   // Show instructions on top of the screen
   // This code was helped written by Github Copilot
   ctx.fillStyle = "white";
@@ -1068,7 +1072,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
     ctx.fillStyle = "white";
     ctx.font = "30px Arial";
     // Convert elapsed (milliseconds) to seconds
-    let secondsElapsed = (elapsed / 1000).toFixed(2);
+    let secondsElapsed = (gameTimer / 1000).toFixed(2);
     ctx.fillText(
       "Congratulations! You won in " + secondsElapsed + " Seconds! Press R to Restart",
       100,
@@ -1095,6 +1099,7 @@ gi.addHandler("keydown", function ({ event }) {
       velocityXs = [];
       velocityYs = [];
       clickCount = 0;
+      gameTimer = 0;
       for (let i = 0; i < 20; i++) {
         ballsXs.push(Math.random() * 480 + 100);
         ballsYs.push(Math.random() * 480 + 100);
@@ -1116,4 +1121,4 @@ gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-d65ea9bc.js.map
+//# sourceMappingURL=index-aad256fd.js.map
