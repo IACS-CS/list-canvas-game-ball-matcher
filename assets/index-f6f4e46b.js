@@ -1045,6 +1045,10 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   if (clickCount > 0) {
     ctx.clearRect(0, 0, width, height);
   }
+  // Timer to the game
+  ctx.fillStyle = "white";
+  ctx.font = "20px Arial";
+  ctx.fillText("Time: " + (gameTimer / 1000).toFixed(2) + " Seconds", 560, 70);
   // Draw the balls with 4 different colors
   // This code was helped written by Github Copilot
   for (let i = 0; i < 20; i++) {
@@ -1121,4 +1125,4 @@ gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-aad256fd.js.map
+//# sourceMappingURL=index-f6f4e46b.js.map
