@@ -26,9 +26,13 @@ let velocityXs = [];
 let velocityYs = [];
 let clickCount = 0;
 let gameTimer = 0;
+const BALL_COUNT = 20;
+const BALL_RADIUS = 15;
+const CLICK_RADIUS = 15;
+const maxSpeed = 3;
 // Draw 20 balls at random positions
 // This code was helped written by Github Copilot
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < BALL_COUNT; i++) {
   ballsXs.push(Math.random() * 480 + 100);
   ballsYs.push(Math.random() * 480 + 100);
   velocityXs.push(Math.random() * 4 - 1);
@@ -36,7 +40,7 @@ for (let i = 0; i < 20; i++) {
 }
 let ballsColors = [];
 // This code was helped written by Github Copilot
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < BALL_COUNT; i++) {
   // Make the balls use 4 different colors evenly
   let colorPalette = ["red", "green", "blue", "yellow"];
   ballsColors.push(colorPalette[i % 4]);
@@ -119,16 +123,6 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.font = "20px Arial";
   ctx.fillText("Time: " + (gameTimer / 1000).toFixed(2) + " Seconds", 560, 70);
    
-    // Bounce the balls off the walls
-    if (ballsXs[i] < 0 || ballsXs[i] > width) {
-      velocityXs[i] *= -1;
-    }
-    if (ballsYs[i] < 0 || ballsYs[i] > height) {
-      velocityYs[i] *= -1;
-    }
-  }
-  
-  
   // If all the balls are blue, stop the game and show the time taken
   // This code was helped written by Github Copilot
 )
@@ -165,7 +159,7 @@ gi.addHandler("keydown", function ({ event }) {
       velocityYs = [];
       clickCount = 0;
       gameTimer = 0;
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < BALL_COUNT; i++) {
         ballsXs.push(Math.random() * 480 + 100);
         ballsYs.push(Math.random() * 480 + 100);
         velocityXs.push(Math.random() * 4 - 1);
