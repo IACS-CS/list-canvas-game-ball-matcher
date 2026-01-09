@@ -179,10 +179,9 @@ gi.addHandler("keydown", function ({ event }) {
 });
 
 
-gi.addHandler("click", function ({ event, x, y }) {
+gi.addHandler("mousedown", function ({ event, x, y }) {
   checkForClickOnThings({ x, y });
 });
-gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
