@@ -1135,11 +1135,10 @@ gi.addHandler("keydown", function ({ event }) {
 });
 
 
-gi.addHandler("click", function ({ event, x, y }) {
+gi.addHandler("mousedown", function ({ event, x, y }) {
   checkForClickOnThings({ x, y });
 });
-gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-e147dd76.js.map
+//# sourceMappingURL=index-8dfb43d0.js.map
