@@ -91,7 +91,7 @@ function moveBalls() {
 }
 // Bounce the balls off the walls 
 // This code was helped written by ChatGPT
-function bounceballs() {
+function bounceballs(width, height) {
   for (let i = 0; i < BALL_COUNT; i++) {
     if (ballsXs[i] < 0 || ballsXs[i] > width) {
       velocityXs[i] *= -1;
@@ -107,22 +107,18 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   gameTimer += stepTime;
   drawballs(ctx);
   moveBalls();
-  bounceballs();
+  bounceballs(width, height);
 
   // Show instructions on top of the screen
   // This code was helped written by Github Copilot
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("Click on the balls to change their color to blue!", 300, 100);
-  // When the player clicks on a ball, remove the text
-  if (clickCount > 0) {
-    ctx.clearRect(0, 0, width, height);
-  }
   // Timer to the game
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("Time: " + (gameTimer / 1000).toFixed(2) + " Seconds", 560, 70);
-   
+}
   // If all the balls are blue, stop the game and show the time taken
   // This code was helped written by Github Copilot
 )
