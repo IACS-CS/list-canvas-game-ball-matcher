@@ -987,7 +987,9 @@ let ballsXs = [];
 let ballsYs = [];
 let velocityXs = [];
 let velocityYs = [];
+let clickCount = 0;
 let gameTimer = 0;
+let showInstructions = true;
 const BALL_COUNT = 20;
 const BALL_RADIUS = 15;
 // Draw 20 balls at random positions
@@ -1027,6 +1029,7 @@ function checkForClickOnThings({ x, y }) {
     if (distance < 15) {
       // Make radius bigger
       ballsColors[i] = "blue";
+      clickCount++;
     }
   }
 }
@@ -1080,9 +1083,14 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 
   // Show instructions on top of the screen
   // This code was helped written by Github Copilot
-  ctx.fillStyle = "white";
-  ctx.font = "20px Arial";
-  ctx.fillText("Click on the balls to change their color to blue!", 300, 100);
+  if (showInstructions) {
+    ctx.fillStyle = "white";
+    ctx.font = "20px Arial";
+    ctx.fillText("Click on the balls to change their color to blue!", 300, 100);
+    if (clickCount > 1) {
+      showInstructions = false;
+    }
+  }
   // Timer to the game
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
@@ -1120,6 +1128,7 @@ gi.addHandler("keydown", function ({ event }) {
       ballsColors = [];
       velocityXs = [];
       velocityYs = [];
+      clickCount = 0;
       gameTimer = 0;
       for (let i = 0; i < BALL_COUNT; i++) {
         ballsXs.push(Math.random() * 480 + 100);
@@ -1141,4 +1150,4 @@ gi.addHandler("mousedown", function ({ x, y }) {
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-ebffeb86.js.map
+//# sourceMappingURL=index-33267222.js.map
