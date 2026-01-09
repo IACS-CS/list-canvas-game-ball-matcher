@@ -1031,10 +1031,42 @@ function checkForClickOnThings({ x, y }) {
     }
   }
 }
+// Draw all the balls
+function drawballs(ctx) {
+  for (let i = 0; i < BALL_COUNT; i++) {
+    ctx.fillStyle = ballsColors[i];
+    ctx.beginPath();
+    ctx.arc(ballsXs[i], ballsYs[i], BALL_RADIUS, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+// Make all the balls move
+// This code was helped written by ChatGPT
+function moveBalls() {
+  for (let i = 0; i< BALL_COUNT; i++) {
+    ballsXs[i] += velocityXs[i];
+    ballsYs[i] += velocityYs[i];
+  }
+}
+// Bounce the balls off the walls 
+// This code was helped written by ChatGPT
+function bounceballs() {
+  for (let i = 0; i < BALL_COUNT; i++) {
+    if (ballsXs[i] < 0 || ballsXs[i] > width) {
+      velocityXs[i] *= -1;
+    }
+    if (ballsYs[i] < 0 || ballsYs[i] > height) {
+      velocityYs[i] *= -1;
+    }
+  }
+}
 
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   // Update gametimer
   gameTimer += stepTime;
+  drawballs(ctx);
+  moveBalls();
+  bounceballs();
 
   // Show instructions on top of the screen
   // This code was helped written by Github Copilot
@@ -1049,16 +1081,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("Time: " + (gameTimer / 1000).toFixed(2) + " Seconds", 560, 70);
-  // Draw the balls with 4 different colors
-  // This code was helped written by Github Copilot
-  for (let i = 0; i < 20; i++) {
-    ctx.fillStyle = ballsColors[i];
-    ctx.beginPath();
-    ctx.arc(ballsXs[i], ballsYs[i], 10, 0, Math.PI * 2);
-    ctx.fill();
-    // Move the balls
-    ballsXs[i] += velocityXs[i];
-    ballsYs[i] += velocityYs[i];
+   
     // Bounce the balls off the walls
     if (ballsXs[i] < 0 || ballsXs[i] > width) {
       velocityXs[i] *= -1;
@@ -1071,6 +1094,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   
   // If all the balls are blue, stop the game and show the time taken
   // This code was helped written by Github Copilot
+);
   if (ballsColors.every((color) => color === "blue")) {
     gi.stop();
     ctx.fillStyle = "white";
@@ -1083,8 +1107,6 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
       250
     );
   }
-  // Your drawing code here...
-});
 
 /* Input Handlers */
 
@@ -1125,4 +1147,4 @@ gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-f6f4e46b.js.map
+//# sourceMappingURL=index-7aa8a46a.js.map
