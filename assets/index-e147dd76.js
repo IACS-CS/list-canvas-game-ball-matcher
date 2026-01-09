@@ -1059,6 +1059,17 @@ function bounceballs(width, height) {
     }
   }
 }
+// Check if all balls are blue
+// This code was helped written by Github Copilot
+function allballsblue() {
+  for (let i = 0; i < BALL_COUNT; i++) {
+    if (ballsColors[i] !== "blue") {
+      return false;
+    }
+  }
+  return true;
+}
+
 
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   // Update gametimer
@@ -1079,7 +1090,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 
   // If all the balls are blue, stop the game and show the time taken
   // This code was helped written by Github Copilot
-  if (ballsColors.every((color) => color === "blue")) {
+  if (allballsblue()) {
     gi.stop();
     ctx.fillStyle = "white";
     ctx.font = "30px Arial";
@@ -1131,4 +1142,4 @@ gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-2a4c189e.js.map
+//# sourceMappingURL=index-e147dd76.js.map
