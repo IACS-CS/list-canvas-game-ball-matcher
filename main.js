@@ -28,8 +28,6 @@ let clickCount = 0;
 let gameTimer = 0;
 const BALL_COUNT = 20;
 const BALL_RADIUS = 15;
-const CLICK_RADIUS = 15;
-const maxSpeed = 3;
 // Draw 20 balls at random positions
 // This code was helped written by Github Copilot
 for (let i = 0; i < BALL_COUNT; i++) {
@@ -179,7 +177,7 @@ gi.addHandler("keydown", function ({ event }) {
 });
 
 
-gi.addHandler("mousedown", function ({ event, x, y }) {
+gi.addHandler("mousedown", function ({ x, y }) {
   checkForClickOnThings({ x, y });
 });
 
