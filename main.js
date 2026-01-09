@@ -68,7 +68,6 @@ function checkForClickOnThings({ x, y }) {
       // Make radius bigger
       ballsColors[i] = "blue";
       clickCount++;
-      break; // Stop checking after first hit
     }
   }
 }
