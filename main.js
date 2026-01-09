@@ -156,7 +156,7 @@ any type of event -- keydown, mousemove, etc) */
 gi.addHandler("keydown", function ({ event }) {
   if (event.key === "r" || event.key === "R") {
     // Only restart if all the balls are blue
-    if (ballsColors.every((color) => color === "blue")) {
+    if (allballsblue()) {
       // Reset game state
       ballsXs = [];
       ballsYs = [];
