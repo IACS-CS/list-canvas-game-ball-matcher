@@ -1027,7 +1027,6 @@ function checkForClickOnThings({ x, y }) {
     if (distance < 15) {
       // Make radius bigger
       ballsColors[i] = "blue";
-      break; // Stop checking after first hit
     }
   }
 }
@@ -1132,4 +1131,4 @@ gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-ed033d99.js.map
+//# sourceMappingURL=index-2a4c189e.js.map
