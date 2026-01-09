@@ -1077,10 +1077,9 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("Time: " + (gameTimer / 1000).toFixed(2) + " Seconds", 560, 70);
-}
+
   // If all the balls are blue, stop the game and show the time taken
   // This code was helped written by Github Copilot
-);
   if (ballsColors.every((color) => color === "blue")) {
     gi.stop();
     ctx.fillStyle = "white";
@@ -1093,6 +1092,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
       250
     );
   }
+});
 
 /* Input Handlers */
 
@@ -1132,4 +1132,4 @@ gi.addClickHandler(checkForClickOnThings);
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-1978f06b.js.map
+//# sourceMappingURL=index-ed033d99.js.map
