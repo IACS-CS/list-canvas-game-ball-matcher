@@ -7,6 +7,11 @@ player makes all the balls blue, the screen tells them how long it took.] */
 /* Citations: [List any resources, libraries, tutorials, etc you used here] 
 /* Note: Used AI to make the colors of the balls distribute evenly, make
 the ball blue when player clicks the ball, and for the game over screen.  */
+// Used AI for revisions by using ChatGPT to revise my code after recieving teacher feedback
+/* to reorganize my code into named functions which were drawballs, moveballs, bounceballs, etc
+/* and call them in gi.adddrawing. AI was used to replace magic numbers with named constants
+/* which were named BALL_COUNT and BALL_RADIUS. Replaced .every(); with a loop for a clearer
+/* understanding of the code. Used AI to detect "dead code" and remove it which was gi.addclickhandler(checkforclickonthings).
 /* including summaries of prompts and/or interactions you had with the AI */
 /* In addition, of course, any AI-generated code should be clearly maked */
 /* in comments throughout the code, though of course when using e.g. CoPilot */
@@ -27,6 +32,7 @@ let velocityYs = [];
 let clickCount = 0;
 let gameTimer = 0;
 let showInstructions = true;
+// This code was helped written by ChatGPT
 const BALL_COUNT = 20;
 const BALL_RADIUS = 15;
 // Draw 20 balls at random positions
