@@ -990,6 +990,7 @@ let velocityYs = [];
 let clickCount = 0;
 let gameTimer = 0;
 let showInstructions = true;
+// This code was helped written by ChatGPT
 const BALL_COUNT = 20;
 const BALL_RADIUS = 15;
 // Draw 20 balls at random positions
@@ -1150,4 +1151,4 @@ gi.addHandler("mousedown", function ({ x, y }) {
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-33267222.js.map
+//# sourceMappingURL=index-9843da88.js.map
